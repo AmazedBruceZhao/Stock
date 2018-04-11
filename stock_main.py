@@ -2,7 +2,7 @@
 import re
 import tushare as ts
 import matplotlib.pyplot as plt
-from matplotlib.pylab import datestr2num
+#from matplotlib.pylab import datestr2num
 
 code = '600606'
 #get stock name
