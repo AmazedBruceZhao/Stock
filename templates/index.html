@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock</title>
+</head>
+<body>
+    <form method="post" action="/crawler">
+        <input type="number" name="stock_code" placeholder="code">
+        <input type="date" name="from_date">
+        <input type="date" name="to_date">
+        <button type="submit">crawl</button>
+    </form>
+
+    <div id="plot_area">
+        <img src="" alt="plot">
+    </div>
+
+    <table id="news_table">
+        <tr>
+          <th>Title</th><th>Type</th><th>Date</th><th>Url</th>
+        </tr>
+    </table>
+</body>
+</html>
