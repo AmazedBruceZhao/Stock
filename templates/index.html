@@ -6,20 +6,27 @@
 </head>
 <body>
     <form method="post" action="/crawler">
-        <input type="number" name="stock_code" placeholder="code">
-        <input type="date" name="from_date">
-        <input type="date" name="to_date">
+        <input type="number" name="stock_code" placeholder="code" value="{{stock_code}}">
+        <input type="date" name="from_date"  value="{{from_date}}">
+        <input type="date" name="to_date"  value="{{to_date}}">
         <button type="submit">crawl</button>
     </form>
 
     <div id="plot_area">
-        <img src="" alt="plot">
+        <img src="data:image/png;base64, {{plot_pic_data}}" alt="plot">
     </div>
 
     <table id="news_table">
         <tr>
           <th>Title</th><th>Type</th><th>Date</th><th>Url</th>
         </tr>
+        {% if stock_news %}
+        {% for row in stock_news %}
+        <tr>
+          <td>{{row['title']}}</td><td>{{row['type']}}</td><td>{{row['date']}}</td><td>{{row['url']}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
     </table>
 </body>
 </html>
