@@ -21,8 +21,6 @@ def get_stock_news(code, start, end):
             res = res.append(temp, ignore_index=True)
         start_date += timedelta(days=1)
 
-
     return res
 
-#get_stock_news('600606', '2018-01-01', '2018-01-31')
 

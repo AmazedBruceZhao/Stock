@@ -45,7 +45,7 @@ def success():
                     'url': str(news['url'])
                 })
 
-        return render_template('index.html', stock_news=stock_news, plot_pic_data=plot_pic_data, stock_code=stock_code, from_date=from_date, to_date=to_date)
+        return render_template('index.html', stock_news=stock_news, stock_name=plot_pic_data['name'], plot_pic_data=plot_pic_data['data'], stock_code=stock_code, from_date=from_date, to_date=to_date)
 
 
 if __name__ == '__main__':

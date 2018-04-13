@@ -41,5 +41,5 @@ def get_stock_plot(code, start, end, session_id=''):
             sio = BytesIO()
             fig.savefig(sio, format='png')
             data = base64.encodebytes(sio.getvalue()).decode()
-            return data
+            return {'name': name, 'data': data}
 
