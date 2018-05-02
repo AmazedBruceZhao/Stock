@@ -51,18 +51,27 @@ def success():
             return render_template('index.html', error='code is not valid', stock_code=stock_code, from_date=from_date, to_date=to_date)
 
         plot_pic_data = get_stock_plot(stock_code, from_date, to_date)
+        sh_pic_data = get_stock_plot('sh', from_date, to_date)
+
         res = get_stock_news(stock_code, from_date, to_date)
-        stock_news = []
+        stock_news = {}
         if res is not None:
             for index, news in res.iterrows():
-                stock_news.append({
+                date = str(news['date'])
+                if date in stock_news:
+                    stock_news[date].append({
                     'type': str(news['type']),
                     'title': str(news['title']),
-                    'date': str(news['date']),
                     'url': str(news['url'])
                 })
+                else:
+                    stock_news[date] = [{
+                    'type': str(news['type']),
+                    'title': str(news['title']),
+                    'url': str(news['url'])
+                }]
 
-        return render_template('index.html', stock_news=stock_news, stock_name=stock_name, plot_pic_data=plot_pic_data, stock_code=stock_code, from_date=from_date, to_date=to_date)
+        return render_template('index.html', stock_news=stock_news, stock_name=stock_name, plot_pic_data=plot_pic_data, sh_pic_data=sh_pic_data, stock_code=stock_code, from_date=from_date, to_date=to_date)
 
 
 if __name__ == '__main__':

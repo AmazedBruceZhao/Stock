@@ -3,6 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Stock</title>
+    <style>
+        .news_container {
+            list-style: none;
+            width: 100%;
+            height: 600px;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y:hidden;
+        }
+
+        .news_day {
+            display: inline-block;
+            height: 100%;
+            overflow:auto;
+        }
+
+
+    </style>
 </head>
 <body>
     <p id="stock_name">{{stock_name}}</p>
@@ -12,22 +32,30 @@
         <input type="date" name="to_date"  value="{{to_date}}">
         <button type="submit">crawl</button>
     </form>
+    <p>selected stock</p>
     <div id="plot_area">
         <img src="data:image/png;base64, {{plot_pic_data}}" alt="plot">
     </div>
+    <p>Shanghai composite index</p>
+    <div id="sh_plot_area">
+        <img src="data:image/png;base64, {{sh_pic_data}}" alt="plot">
+    </div>
 
     <p style="color: red;">{{error}}</p>
-    <table id="news_table">
-        <tr>
-          <th>Title</th><th>Type</th><th>Date</th>
-        </tr>
+
+    <ul class="news_container">
         {% if stock_news %}
-        {% for row in stock_news %}
-        <tr>
-          <td><a href="{{row['url']}}"  target="_blank">{{row['title']}}</a></td><td>{{row['type']}}</td><td>{{row['date']}}</td>
-        </tr>
+        {% for k, v in stock_news.items() %}
+        <li class="news_day">
+            <b>{{k}}>>></b>
+            <ul>
+                {% for i in v %}
+                <li><a target="_blank" href="{{i['url']}}">{{i['title']}}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
         {% endfor %}
         {% endif %}
-    </table>
+    </ul>
 </body>
 </html>
